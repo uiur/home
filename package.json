@@ -1,0 +1,23 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "publish.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uiureo/home.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uiureo/home/issues"
+  },
+  "homepage": "https://github.com/uiureo/home#readme",
+  "dependencies": {
+    "aws-iot-device-sdk": "^1.0.12",
+    "mqtt": "^1.11.2"
+  }
+}

@@ -1,1 +1,2 @@
 * * * * * sudo python home/report.py >> temperature.log
+* * * * * cd ~/home && /home/pi/.nvm/versions/node/v5.4.1/bin/node publish.js
