@@ -8,6 +8,12 @@ python ir/play.py ir/data/aircon-on.json
 python ir/play.py ir/data/aircon-off.json
 ```
 
+## Deploy
+```sh
+crontab crontab
+supervisorctl restart server
+```
+
 ## Dependencies
 * https://github.com/adafruit/Adafruit_Python_GPIO
 * https://github.com/uiureo/tsl2561
