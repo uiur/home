@@ -17,3 +17,4 @@ supervisorctl restart server
 ## Dependencies
 * https://github.com/adafruit/Adafruit_Python_GPIO
 * https://github.com/uiureo/tsl2561
+* [apex](https://github.com/apex/apex) for AWS Lambda functions
