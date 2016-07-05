@@ -10,7 +10,7 @@ const device = deviceModule({
   region: 'ap-northeast-1'
 })
 
-function readData(cb) {
+function readData (cb) {
   exec('sudo python report.py', (err, stdout, stderr) => {
     if (err) {
       cb(err)

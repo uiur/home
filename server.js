@@ -2,6 +2,7 @@
 
 const deviceModule = require('aws-iot-device-sdk').device
 const exec = require('child_process').exec
+const path = require('path')
 
 const device = deviceModule({
   keyPath: '/home/pi/certs/private.pem.key',
@@ -11,8 +12,8 @@ const device = deviceModule({
   clientId: 'piserver'
 })
 
-function updateLights(data, callback) {
-  exec('curl -X PUT --data \'' + JSON.stringify(data) + '\' http://10.0.1.2/api/UDFYuTwbCfOgWUifr60MaAEBTDMmGAjxEzWkaRyA/groups/1/action', callback)
+function updateLights (data, callback) {
+  exec("curl -X PUT --data '" + JSON.stringify(data) + "' http://10.0.1.2/api/UDFYuTwbCfOgWUifr60MaAEBTDMmGAjxEzWkaRyA/groups/1/action", callback)
 }
 
 device.on('connect', () => {
@@ -33,7 +34,7 @@ device.on('message', (topic, payloadBuffer) => {
         irData = 'ir/data/aircon-off.json'
       }
 
-      exec('python ir/play.py ' + irData, err => {
+      exec(['python', path.join(__dirname, 'ir/play.py'), path.join(__dirname, irData)].join(' '), err => {
         if (err) console.error(err)
       })
 
