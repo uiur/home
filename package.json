@@ -18,6 +18,7 @@
   "homepage": "https://github.com/uiureo/home#readme",
   "dependencies": {
     "aws-iot-device-sdk": "^1.0.12",
+    "axios": "^0.12.0",
     "mqtt": "^1.11.2"
   },
   "devDependencies": {
