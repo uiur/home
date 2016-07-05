@@ -1,0 +1,9 @@
+
+{
+  "name": "home",
+  "description": "",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::328632182478:role/home_lambda_function",
+  "environment": {}
+}
