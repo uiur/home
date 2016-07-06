@@ -37,6 +37,14 @@ function publish (topic, payload) {
   return axios.post(`https://84ry1pi5zb.execute-api.ap-northeast-1.amazonaws.com/prod/publish?topic=${topic}`, payload)
 }
 
+function reply (context, text) {
+  context.succeed({
+    username: 'Jules',
+    icon_url: 'https://i.gyazo.com/thumb/200_crop/_84bd6b7081e2b45db17a6588be19a075-jpg.jpg',
+    text: text
+  })
+}
+
 var processEvent = function (event, context) {
   var body = event.body
   var params = qs.parse(body)
@@ -49,7 +57,9 @@ var processEvent = function (event, context) {
   var user = params.user_name
   var channel = params.channel_name
   var commandText = params.text
-  var text = commandText.replace(/^bot\s+/, '')
+  var triggerWord = params.trigger_word
+
+  var text = commandText.replace(new RegExp(`^${triggerWord}\s*`), '')
 
   var topic
   var payload
@@ -62,18 +72,22 @@ var processEvent = function (event, context) {
   } else if ((/エアコンつけて/).test(text)) {
     topic = 'aircon'
     payload = { on: true }
-  } else if ((/エアコンけして/)) {
+  } else if ((/エアコンけして/).test(text)) {
     topic = 'aircon'
     payload = { on: false }
+  } else if ((/こんにちは/).test(text)) {
+    reply(context, text)
+    return
   }
 
-  publish(topic, payload)
-    .then(() => {
-      context.succeed({
-        text: 'ok'
+
+  if (topic.length > 0 && payload !== undefined) {
+    publish(topic, payload)
+      .then(() => {
+        reply(context, 'ok')
       })
-    })
-    .catch(err => {
-      console.error(err)
-    })
+      .catch(err => {
+        console.error(err)
+      })
+  }
 }
