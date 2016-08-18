@@ -16,7 +16,7 @@ mouseDevice.on('click', e => {
   const isLeftClick = e.button === 0
   if (isLeftClick) {
     request.get(groupUrl).then(res => {
-      let lightState = { on: res.data.on }
+      let lightState = { on: res.data.action.on }
       lightState.on = !lightState.on
 
       return request.put(`${groupUrl}/action`, lightState)
